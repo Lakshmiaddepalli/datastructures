@@ -1,5 +1,6 @@
 package document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** 
@@ -36,7 +37,10 @@ public class BasicDocument extends Document
 	{
 		//TODO: Implement this method in week 2 according to the comments above.  
 		// See the Module 2 support videos if you need help.
-	    return 0;
+		List<String> a = new ArrayList<String>();
+		String p = "[a-zA-Z]+";
+		a  = super.getTokens(p);
+	    return a.size();
 	}
 	
 	/**
@@ -56,7 +60,11 @@ public class BasicDocument extends Document
 	{
 	    //TODO: Implement this method.  See the Module 2 support videos 
         // if you need help.
-        return 0;
+		List<String> a = new ArrayList<String>();
+		String p = "[^.*!*?*]+";
+		a  = super.getTokens(p);
+	    return a.size();
+        
 	}
 	
 	/**
@@ -81,7 +89,15 @@ public class BasicDocument extends Document
 		// expression for the syllable counting.  We recommend you implement 
 		// the helper function countSyllables in Document.java using a loop, 
 		// and then call it here on each word.
-        return 0;
+		int sum = 0;
+		List<String> a = new ArrayList<String>();
+		String p = "[a-zA-Z0-9]+";
+		a  = super.getTokens(p);
+		for(String i:a){
+		int value = super.countSyllables(i);
+		sum = sum + value;
+		}
+        return sum;
 	}
 	
 	

@@ -35,13 +35,13 @@ public class MarkovTextGeneratorGrader {
             String input = "I love cats. I hate dogs. I I I I I I I I I I I I I I I I love cats. I I I I I I I I I I I I I I I I hate dogs. I I I I I I I I I like books. I love love. I am a text generator. I love cats. I love cats. I love cats. I love love love socks.";
             gen.retrain(input);
             String res = gen.generateText(LENGTH);
-
+            System.out.println(res);
             feedback += "\nGenerator produced: " + res + "\n";
-
+            System.out.println(feedback);
             String[] words = res.split("[\\s]+");
             feedback += "\n** Test #3: Checking requested generator word count...";
             feedback += "Your generator produced " + words.length + " words. ";
-
+            System.out.println(feedback);
             HashMap<String, Integer> wordCounts = new HashMap<String, Integer>();
 
             for (String w : words) {

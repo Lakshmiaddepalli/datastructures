@@ -44,6 +44,14 @@ class TrieNode {
 	 * in the trie.  If it was, it does not modify the trie
 	 * and returns null.
 	 * @param c The character that will link to the new node
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 * @return The newly created TrieNode, or null if the node is already 
 	 *     in the trie.
 	 */

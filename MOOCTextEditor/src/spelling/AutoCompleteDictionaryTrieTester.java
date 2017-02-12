@@ -85,6 +85,7 @@ public class AutoCompleteDictionaryTrieTester {
 	}
 	
 	/** Test the addWord method */
+	
 	@Test
 	public void testAddWord()
 	{
@@ -129,13 +130,15 @@ public class AutoCompleteDictionaryTrieTester {
 		
 	}
 	
+	
 	@Test
 	public void testPredictCompletions()
-	{
+	{ 
+		
 		List<String> completions;
 		completions = smallDict.predictCompletions("", 0);
-		assertEquals(0, completions.size());
-		
+		assertEquals(0, completions.size()); 
+		smallDict.printTree(); 
 		completions = smallDict.predictCompletions("",  4);
 		assertEquals(4, completions.size());
 		assertTrue(completions.contains("a"));
@@ -143,23 +146,21 @@ public class AutoCompleteDictionaryTrieTester {
 		boolean twoOfThree = completions.contains("hey") && completions.contains("hot") ||
 				             completions.contains("hey") && completions.contains("hem") ||
 				             completions.contains("hot") && completions.contains("hem");
-		assertTrue(twoOfThree);
+		assertTrue(twoOfThree); 
 		
 		completions = smallDict.predictCompletions("he", 2);
-		boolean allIn = completions.contains("he") && 
-				(completions.contains("hem") || completions.contains("hey"));
+		boolean allIn = completions.contains("he") && (completions.contains("hem") || completions.contains("hey"));
 		assertEquals(2, completions.size());
-		assertTrue(allIn);
+		assertTrue(allIn); 
 		
 		completions = smallDict.predictCompletions("hel", 10);
 		assertEquals(2, completions.size());
-		allIn = completions.contains("hello") && completions.contains("help");
+	     allIn = completions.contains("hello") && completions.contains("help");
 		assertTrue(allIn);
 	
 		completions = smallDict.predictCompletions("x", 5);
-		assertEquals(0, completions.size());
+		assertEquals(0, completions.size()); 
 	}
-	
 	
 	
 	

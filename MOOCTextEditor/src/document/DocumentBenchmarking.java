@@ -21,6 +21,8 @@ public class DocumentBenchmarking {
 
 	    // The text to test on
 	    String textfile = "data/warAndPeace.txt";
+	    //String textfile1 = "data/dict.txt";
+
 		
 	    // The amount of characters to increment each step
 	    // You can play around with this
@@ -37,6 +39,8 @@ public class DocumentBenchmarking {
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
+		
+		//System.out.println("NumberOfChars" + "\t" + "BasicTime" + "\t" + "EfficientTime" + "\t");
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment)
 		{
@@ -58,7 +62,36 @@ public class DocumentBenchmarking {
 			 * 6. Print out the time it took to complete the loop in step 5 
 			 *      (on the same line as the first print statement) followed by a newline (\n) 
 			 */  
-			 
+			
+			System.out.print(numToCheck);
+			System.out.print("\t");
+			String read = getStringFromFile(textfile,numToCheck);
+			//String read1 = getStringFromFile(textfile1,numToCheck);
+			long starttime = System.nanoTime();
+			for(int i = 0; i < trials;i++)
+			{
+				Document d = new BasicDocument(read);
+				double ans = d.getFleschScore();
+				//Document d1 = new BasicDocument(read1);
+				//double ans1 = d1.getFleschScore();
+			}
+            long endtime = System.nanoTime();
+            double finaltime = (endtime-starttime)/1000000000.0;
+            System.out.print(finaltime);
+            System.out.print("\t");
+            long starttime1 = System.nanoTime();
+			for(int i = 0; i < trials;i++)
+			{
+				Document d1 = new EfficientDocument(read);
+				double ans1 = d1.getFleschScore();
+			//	Document d2 = new EfficientDocument(read1);
+				//double ans2 = d2.getFleschScore();
+			}
+            long endtime1 = System.nanoTime();
+            double finaltime1 = (endtime1-starttime1)/1000000000.0;
+            System.out.print(finaltime1);
+            System.out.print("\t");
+            System.out.print("\n");
 		}
 	
 	}
