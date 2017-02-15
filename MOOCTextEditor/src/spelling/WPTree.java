@@ -3,6 +3,7 @@
  */
 package spelling;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -27,9 +28,9 @@ public class WPTree implements WordPath {
 	public WPTree () {
 		this.root = null;
 		// TODO initialize a NearbyWords object
-		// Dictionary d = new DictionaryHashSet();
-		// DictionaryLoader.loadDictionary(d, "data/dict.txt");
-		// this.nw = new NearbyWords(d);
+		 Dictionary d = new DictionaryHashSet();
+		 DictionaryLoader.loadDictionary(d, "data/dict.txt");
+		 this.nw = new NearbyWords(d);
 	}
 	
 	//This constructor will be used by the grader code
@@ -42,7 +43,35 @@ public class WPTree implements WordPath {
 	public List<String> findPath(String word1, String word2) 
 	{
 	    // TODO: Implement this method.
-	    return new LinkedList<String>();
+		List<WPTreeNode> queue = new LinkedList<WPTreeNode>();     // String to explore
+		HashSet<String> visited = new HashSet<String>();
+	    root = new WPTreeNode(word1,null);
+	    visited.add(word1);
+	    queue.add(root);
+	    while(queue.size()> 0 && !visited.contains(word2))
+	    {
+	    	WPTreeNode curr = queue.remove(0);
+	    	System.out.println(curr.getWord());
+	    	List<String> neighborList = nw.distanceOne(curr.getWord(), true);
+			for(String i: neighborList)
+			{
+				System.out.println(i);
+				if(!visited.contains(i))
+				{
+					WPTreeNode node = curr.addChild(i);
+					visited.add(i);
+					queue.add(node);
+					System.out.println(printQueue(queue));
+					if(i.equals(word2))
+					{
+						//System.out.println(curr.buildPathToRoot());
+						return node.buildPathToRoot();
+					}
+					
+				}
+			}
+	    }
+		return null;
 	}
 	
 	// Method to print a list of WPTreeNodes (useful for debugging)
@@ -107,8 +136,10 @@ class WPTreeNode {
 	 */
     public List<String> buildPathToRoot() {
         WPTreeNode curr = this;
+        System.out.println(curr.toString());
         List<String> path = new LinkedList<String>();
         while(curr != null) {
+        	System.out.println(curr.getWord());
             path.add(0,curr.getWord());
             curr = curr.parent; 
         }

@@ -14,6 +14,7 @@ public class WPTreeGrader {
         }
         String ret = "";
         for (int i = 0; i < path.size(); i++) {
+        	System.out.println(path.get(i));
             ret += path.get(i);
             if (i < path.size() - 1) {
                 ret += ", ";
